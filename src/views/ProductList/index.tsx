@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/navbar/navbar';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 interface Product {
   id: number;
@@ -11,35 +11,40 @@ interface Product {
 }
 
 
-const Home: React.FC = () => {
-  const navigate = useNavigate();
+const ProductList: React.FC = () => {
+    
+    const { categoryId } = useParams();
+    const decodedId = decodeURI(categoryId || "")
   const [category, setCategory] = useState<string[]>([]);
   const [data, setData] = useState<Product[]>([]); 
 
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products/categories')
+    /* axios.get('https://fakestoreapi.com/products/categories')
       .then(response => {
         setCategory(response.data); 
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-      });
+      }); */
+      getCategoryData()
   }, []);
 
-  const handleCategoryClick=(item:string)=>{
-    navigate("list/"+encodeURI(item))
+  const getCategoryData = () => {
+    axios.get(`https://fakestoreapi.com/products/category/${categoryId}`)
+      .then(response => {
+        console.log(response.data)
+        setData(response.data); 
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
   }
 
   return (
     <>
     <div className='container mt-5'>
       <div className='d-flex'>
-        <h4>Select Category:</h4>
-        <div>
-          {category.map((item, index) => (
-            <button className='btn btn-info mx-2 text-capitalize' key={index +1 } onClick={()=>handleCategoryClick(item)}>{item}</button>
-        ))}
-        </div>
+        
       </div> 
     <div className="row mt-5">
       {data.map((product, index) => (
@@ -68,4 +73,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default ProductList;

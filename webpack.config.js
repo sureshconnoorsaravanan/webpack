@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -60,4 +61,8 @@ module.exports = {
       reportFilename: 'bundle-report.html', // The name of the report file
     }),
   ],
+  devServer: {
+    port: 8080,
+    historyApiFallback: true,  // Required for React Router
+  },
 };
