@@ -1,8 +1,10 @@
-import ComponentA from "./components/ComponentA";
+import Home from "./views/home";
 
 const App = () => {
   return (
-    <ComponentA/>
+    <>
+      <Home />
+      </>
   );
 };
 
