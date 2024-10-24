@@ -11,10 +11,7 @@ import { useTranslation } from 'react-i18next';
 const App: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-<<<<<<< HEAD
   const { t } = useTranslation();
-=======
->>>>>>> c9d944ef737c55e7bba0ec11f475842cfd454151
 
   return (
     <Provider store={store}>
