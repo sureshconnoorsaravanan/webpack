@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { fetchProductsByCategory } from '../redux/slices/products/productSlice';
+import { useTranslation } from 'react-i18next';
 
 const ProductList: React.FC = () => {
     
   const { categoryId } = useParams<{ categoryId: string }>();
-
   const dispatch = useAppDispatch();
-
+  const { t } = useTranslation();
   const { products } = useAppSelector((state) => state.products);
 
   useEffect(() => {
@@ -16,8 +16,6 @@ const ProductList: React.FC = () => {
       dispatch(fetchProductsByCategory(categoryId));
     }
   }, [dispatch, categoryId]);
-
-  
 
   return (
     <div className='container mt-5'>
@@ -37,9 +35,9 @@ const ProductList: React.FC = () => {
                 <h6 className="product-header text-truncate">{product.title}</h6>
               </header>
               <p className="card-text">
-                <b>Price:</b> ${product.price.toFixed(2)}
+                <b>{t('price')}:</b> ${product.price.toFixed(2)}
               </p>
-              <button className='btn btn-warning'>Add Cart</button>
+              <button className='btn btn-warning'>{t('add-cart')}</button>
             </div>
           </div>
         </div>

@@ -6,10 +6,13 @@ import Home from './views/Home';
 import ProductList from './views/ProductList';
 import Footer from './components/Footer';
 import CategoryTab from './components/CategoryTab';
+import { useTranslation } from 'react-i18next';
 
 const App: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
+
   return (
     <Provider store={store}>
       <Navbar/>
@@ -17,11 +20,10 @@ const App: React.FC = () => {
       {location.pathname !== "/" && (
         <div className="container mt-3 d-flex justify-content-end">
           <button
-            className="btn btn-light"
-            style={{ cursor: "pointer" }}
+            className="back-button"
             onClick={() => navigate("/")}
           >
-            ← Back to Home
+            ← {t('back-to-home')}
           </button>
         </div>
       )}

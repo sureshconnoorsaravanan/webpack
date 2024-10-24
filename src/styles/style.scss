@@ -160,3 +160,20 @@ body.dark {
     }
   }
 }
+
+.back-button {
+  color: #ffffff;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #357ABD;
+}
+
