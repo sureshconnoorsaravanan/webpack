@@ -10,28 +10,41 @@ import CategoryTab from './components/CategoryTab';
 const App: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
   return (
     <Provider store={store}>
-      <Navbar/>
-      <CategoryTab />
+      <header>
+        <Navbar />
+      </header>
+      
+      <nav aria-label="Category navigation">
+        <CategoryTab />
+      </nav>
+
       {location.pathname !== "/" && (
         <div className="container mt-3 d-flex justify-content-end">
           <button
             className="btn btn-light"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/")}
+            aria-label="Back to Home"  
           >
             ← Back to Home
           </button>
         </div>
       )}
+      
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/list/:categoryId" element={<ProductList />} />
         </Routes>
-        <Footer/>
-  </Provider>
-   
+      </main>
+
+      <footer>
+        <Footer />
+      </footer>
+    </Provider>
   );
 };
 
