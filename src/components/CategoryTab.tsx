@@ -18,7 +18,7 @@ const CategoryTab: React.FC = () => {
 
   const handleCategoryClick = (item: string) => {
     navigate("list/" + encodeURIComponent(item));
-  }
+  };
 
   return (
     <div className='category-tab-container'>
@@ -26,13 +26,14 @@ const CategoryTab: React.FC = () => {
         <h4 className='category-title'>{t('category')}</h4>
         <LanguageSwitch />
       </div>
-      <div className='category-buttons'>
+      <div className='category-buttons' role="group" aria-label="Category selection">
         {categories.map((item, index) => (
           <button
             className='category-button'
             key={index}
             onClick={() => handleCategoryClick(item)}
             aria-label={`Select ${item} category`}
+            tabIndex={0}
           >
             {item}
           </button>

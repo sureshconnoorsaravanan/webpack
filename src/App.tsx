@@ -11,29 +11,44 @@ import { useTranslation } from 'react-i18next';
 const App: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+<<<<<<< HEAD
   const { t } = useTranslation();
+=======
+>>>>>>> c9d944ef737c55e7bba0ec11f475842cfd454151
 
   return (
     <Provider store={store}>
-      <Navbar/>
-      <CategoryTab />
+      <header>
+        <Navbar />
+      </header>
+      
+      <nav aria-label="Category navigation">
+        <CategoryTab />
+      </nav>
+
       {location.pathname !== "/" && (
         <div className="container mt-3 d-flex justify-content-end">
           <button
             className="back-button"
             onClick={() => navigate("/")}
+            aria-label="Back to Home"  
           >
             ← {t('back-to-home')}
           </button>
         </div>
       )}
+      
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/list/:categoryId" element={<ProductList />} />
         </Routes>
-        <Footer/>
-  </Provider>
-   
+      </main>
+
+      <footer>
+        <Footer />
+      </footer>
+    </Provider>
   );
 };
 
