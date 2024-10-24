@@ -13,6 +13,3 @@ export const loadLanguage = async (language: string) => {
 
 // Load the default language (English) on app startup
 export const loadDefaultLanguage = () => loadLanguage('en');
-
-
-

@@ -63,6 +63,6 @@ module.exports = {
   ],
   devServer: {
     port: 8080,
-    historyApiFallback: true,  // Required for React Router
+    historyApiFallback: true, // Required for React Router
   },
 };
